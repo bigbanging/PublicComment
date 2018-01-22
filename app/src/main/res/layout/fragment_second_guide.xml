@@ -1,0 +1,21 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.litte.publiccomment.fragment_guide.SecondGuideFragment">
+    <TextView
+        android:id="@+id/tv_second_skip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="跳过"
+        android:textSize="18sp"
+        android:layout_gravity="end"
+        android:background="@drawable/shape_skip"
+        android:padding="10dp"
+        android:layout_margin="10dp"/>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/new_comer_guide_fg_2"/>
+
+</FrameLayout>

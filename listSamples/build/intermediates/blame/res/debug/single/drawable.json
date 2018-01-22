@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "D:\\Develop\\Workspace\\Android\\AS\\Practice\\Core4\\PublicComment\\listSamples\\build\\intermediates\\res\\merged\\debug\\drawable\\vpi__tab_indicator.xml",
+        "source": "D:\\Develop\\Workspace\\Android\\AS\\Practice\\Core4\\PublicComment\\viewpagerIndicator_library\\build\\intermediates\\bundles\\default\\res\\drawable\\vpi__tab_indicator.xml"
+    },
+    {
+        "merged": "D:\\Develop\\Workspace\\Android\\AS\\Practice\\Core4\\PublicComment\\listSamples\\build\\intermediates\\res\\merged\\debug\\drawable\\perm_group_location.xml",
+        "source": "D:\\Develop\\Workspace\\Android\\AS\\Practice\\Core4\\PublicComment\\listSamples\\src\\main\\res\\drawable\\perm_group_location.xml"
+    },
+    {
+        "merged": "D:\\Develop\\Workspace\\Android\\AS\\Practice\\Core4\\PublicComment\\listSamples\\build\\intermediates\\res\\merged\\debug\\drawable\\perm_group_calendar.xml",
+        "source": "D:\\Develop\\Workspace\\Android\\AS\\Practice\\Core4\\PublicComment\\listSamples\\src\\main\\res\\drawable\\perm_group_calendar.xml"
+    },
+    {
+        "merged": "D:\\Develop\\Workspace\\Android\\AS\\Practice\\Core4\\PublicComment\\listSamples\\build\\intermediates\\res\\merged\\debug\\drawable\\custom_tab_indicator.xml",
+        "source": "D:\\Develop\\Workspace\\Android\\AS\\Practice\\Core4\\PublicComment\\listSamples\\src\\main\\res\\drawable\\custom_tab_indicator.xml"
+    },
+    {
+        "merged": "D:\\Develop\\Workspace\\Android\\AS\\Practice\\Core4\\PublicComment\\listSamples\\build\\intermediates\\res\\merged\\debug\\drawable\\perm_group_device_alarms.xml",
+        "source": "D:\\Develop\\Workspace\\Android\\AS\\Practice\\Core4\\PublicComment\\listSamples\\src\\main\\res\\drawable\\perm_group_device_alarms.xml"
+    },
+    {
+        "merged": "D:\\Develop\\Workspace\\Android\\AS\\Practice\\Core4\\PublicComment\\listSamples\\build\\intermediates\\res\\merged\\debug\\drawable\\perm_group_camera.xml",
+        "source": "D:\\Develop\\Workspace\\Android\\AS\\Practice\\Core4\\PublicComment\\listSamples\\src\\main\\res\\drawable\\perm_group_camera.xml"
+    }
+]
