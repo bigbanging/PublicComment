@@ -21,6 +21,7 @@ import android.widget.TextView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.litte.publiccomment.R;
+import com.litte.publiccomment.util.HttpUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -90,7 +91,7 @@ public class MainActivity extends Activity {
         listView.addHeaderView(listHeaderRecommend);
         listView.setAdapter(adapter);
         initialHeaderListIcon(listHeaderIcon);
-        //添加下拉刷新
+        //添加下拉刷新（模拟）
         pullToRefreshListView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
             @Override
             public void onRefresh(PullToRefreshBase<ListView> refreshView) {
@@ -104,6 +105,7 @@ public class MainActivity extends Activity {
                 },1500);
             }
         });
+        //下拉刷新时顶部菜单项状态的改变
         listView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
@@ -112,9 +114,9 @@ public class MainActivity extends Activity {
 
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                Log.i("TAG", "firstVisibleItem: "+firstVisibleItem);
+                /*Log.i("TAG", "firstVisibleItem: "+firstVisibleItem);
                 Log.i("TAG", "visibleItemCount: "+visibleItemCount);
-                Log.i("TAG", "totalItemCount: "+totalItemCount);
+                Log.i("TAG", "totalItemCount: "+totalItemCount);*/
                 if (firstVisibleItem == 0){
                     ll_header_left_actionBar.setVisibility(View.VISIBLE);
                     imgView_header_right_actionBar.setVisibility(View.VISIBLE);
@@ -222,5 +224,29 @@ public class MainActivity extends Activity {
         stringList.add("qqq");
         stringList.add("sss");
         adapter.notifyDataSetChanged();
+
+        //1)发起一个请求，服务器响应
+        //以GET的方式发起请求
+        //请求格式：http://xxx.xxxx.com/xxx？key=14xxxxxxx&city=%e8%f8%c6%xx%xx%xx
+        //利用HttpClient(apache)
+        //HttpURLConnection
+//        HttpUtils.testHttpConnection();
+        //Volley
+//        HttpUtils.testVolley();
+        //Retrofit+OKHttp
+        HttpUtils.testRetrofit();
+        //2)根据服务器响应的内容进行解析
+        // JSON字符串 / XML文档
+        // 解析JSON字符串：
+        // JSONLib(JsonObject)
+        // GSON
+        // fastJson
+        // jackson
+        // 解析XML文档
+        // XMLPull
+        // SAX
+
+        //3)将解析结果放到View中显示
+        //放到ListView中显示需要适配器、条目布局
     }
 }
