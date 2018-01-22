@@ -18,6 +18,7 @@ import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.android.volley.Response;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.litte.publiccomment.R;
@@ -233,8 +234,14 @@ public class MainActivity extends Activity {
 //        HttpUtils.testHttpConnection();
         //Volley
 //        HttpUtils.testVolley();
+        HttpUtils.getDailyDealsByVolley(tv_city.getText().toString(), new Response.Listener<String>() {
+            @Override
+            public void onResponse(String s) {
+                Log.i("TAG", "onResponse: "+s);
+            }
+        });
         //Retrofit+OKHttp
-        HttpUtils.testRetrofit();
+//        HttpUtils.testRetrofit();
         //2)根据服务器响应的内容进行解析
         // JSON字符串 / XML文档
         // 解析JSON字符串：

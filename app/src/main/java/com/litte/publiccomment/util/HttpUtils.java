@@ -152,6 +152,9 @@ http://api.dianping.com/v1/business/find_businesses
     public static void testVolley(){
         VolleyUtils.getInstance().test();
     }
+    public static void getDailyDealsByVolley(String city, Response.Listener<String> listener){
+        VolleyUtils.getInstance().getDailyDeals(city,listener);
+    }
     public static void testRetrofit(){
         /*//1、创建Retrofit对象
         String baseUrl = "http://api.dianping.com/v1/";//访问URL的共同部分
