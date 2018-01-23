@@ -17,11 +17,16 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Response;
+
+import com.google.gson.Gson;
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.litte.publiccomment.R;
+import com.litte.publiccomment.adapter.DealAdapter;
+import com.litte.publiccomment.bean.TuanBean;
 import com.litte.publiccomment.util.HttpUtils;
 
 import java.util.ArrayList;
@@ -48,9 +53,10 @@ public class MainActivity extends Activity {
     //中部 下拉刷新
     @BindView(R.id.pullToRefreshListView)
     PullToRefreshListView pullToRefreshListView;
+
     ListView listView;
-    List<String> stringList = null;
-    ArrayAdapter<String> adapter =null;
+    List<TuanBean.Deal> datas = null;
+    DealAdapter adapter =null;
     //底部菜单选项
     RadioGroup radioGroup_buttom;
     @Override
@@ -75,8 +81,8 @@ public class MainActivity extends Activity {
     }
     private void initialListView() {
         listView = pullToRefreshListView.getRefreshableView();
-        stringList = new ArrayList<>();
-        adapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,stringList);
+        datas = new ArrayList<TuanBean.Deal>();
+        adapter = new DealAdapter(this,datas);
         //为listView添加若干布局文件
         LayoutInflater inflater = LayoutInflater.from(this);//布局解析器
         //添加首页头部图片组viewPager
@@ -96,14 +102,15 @@ public class MainActivity extends Activity {
         pullToRefreshListView.setOnRefreshListener(new PullToRefreshBase.OnRefreshListener<ListView>() {
             @Override
             public void onRefresh(PullToRefreshBase<ListView> refreshView) {
-                new Handler().postDelayed(new Runnable() {
+                /*new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         stringList.add(0,"新增内容");
                         adapter.notifyDataSetChanged();
                         pullToRefreshListView.onRefreshComplete();
                     }
-                },1500);
+                },1500);*/
+                refresh();
             }
         });
         //下拉刷新时顶部菜单项状态的改变
@@ -208,23 +215,6 @@ public class MainActivity extends Activity {
     }
 
     private void refresh() {
-        stringList.add("aaa");
-        stringList.add("bbb");
-        stringList.add("ccc");
-        stringList.add("eee");
-        stringList.add("fff");
-        stringList.add("ggg");
-        stringList.add("hhh");
-        stringList.add("iii");
-        stringList.add("kkk");
-        stringList.add("lll");
-        stringList.add("mmm");
-        stringList.add("nnn");
-        stringList.add("ooo");
-        stringList.add("ppp");
-        stringList.add("qqq");
-        stringList.add("sss");
-        adapter.notifyDataSetChanged();
 
         //1)发起一个请求，服务器响应
         //以GET的方式发起请求
@@ -238,6 +228,16 @@ public class MainActivity extends Activity {
             @Override
             public void onResponse(String s) {
                 Log.i("TAG", "onResponse: "+s);
+                if (s!=null) {
+                    Gson gson = new Gson();
+                    TuanBean tuanBean = gson.fromJson(s, TuanBean.class);
+                    List<TuanBean.Deal> deals = tuanBean.getDeals();
+                    //将deals放到listView中呈现
+                    adapter.addAll(deals, true);
+                }else {
+                    Toast.makeText(MainActivity.this, "今日无新增团购内容", Toast.LENGTH_SHORT).show();
+                }
+                pullToRefreshListView.onRefreshComplete();
             }
         });
         //Retrofit+OKHttp

@@ -2,6 +2,7 @@ package com.litte.publiccomment.util;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.ImageView;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -154,6 +155,9 @@ http://api.dianping.com/v1/business/find_businesses
     }
     public static void getDailyDealsByVolley(String city, Response.Listener<String> listener){
         VolleyUtils.getInstance().getDailyDeals(city,listener);
+    }
+    public static void loadImage(String url, ImageView imageView){
+        VolleyUtils.getInstance().loadImage(url,imageView);
     }
     public static void testRetrofit(){
         /*//1、创建Retrofit对象

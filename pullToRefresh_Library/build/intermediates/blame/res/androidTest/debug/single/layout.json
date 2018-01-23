@@ -1,13 +1,5 @@
 [
     {
-        "merged": "D:\\Develop\\Workspace\\Android\\AS\\Practice\\Core4\\Groupon\\pullToRefresh_Library\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\pull_to_refresh_header_horizontal.xml",
-        "source": "D:\\Develop\\Workspace\\Android\\AS\\Practice\\Core4\\Groupon\\pullToRefresh_Library\\build\\intermediates\\bundles\\debug\\res\\layout\\pull_to_refresh_header_horizontal.xml"
-    },
-    {
-        "merged": "D:\\Develop\\Workspace\\Android\\AS\\Practice\\Core4\\Groupon\\pullToRefresh_Library\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\pull_to_refresh_header_vertical.xml",
-        "source": "D:\\Develop\\Workspace\\Android\\AS\\Practice\\Core4\\Groupon\\pullToRefresh_Library\\build\\intermediates\\bundles\\debug\\res\\layout\\pull_to_refresh_header_vertical.xml"
-    },
-    {
         "merged": "D:\\Develop\\Workspace\\Android\\AS\\Practice\\Core4\\PublicComment\\pullToRefresh_Library\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\pull_to_refresh_header_horizontal.xml",
         "source": "D:\\Develop\\Workspace\\Android\\AS\\Practice\\Core4\\PublicComment\\pullToRefresh_Library\\build\\intermediates\\bundles\\debug\\res\\layout\\pull_to_refresh_header_horizontal.xml"
     },

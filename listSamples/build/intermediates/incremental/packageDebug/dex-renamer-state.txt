@@ -1,7 +1,0 @@
-#Sat Jan 20 22:29:00 GMT+08:00 2018
-base.0=D\:\\Develop\\Workspace\\Android\\AS\\Practice\\Core4\\PublicComment\\listSamples\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_b77ed9a35485f33f1ccf15b8e2398292b491d3bb
-renamed.1=classes2.dex
-renamed.0=classes.dex
-file.1=D\:\\Develop\\Workspace\\Android\\AS\\Practice\\Core4\\PublicComment\\listSamples\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_8c935acd56e94900ecf56ac8d90b1c0195dc3f9d\\classes.dex
-base.1=D\:\\Develop\\Workspace\\Android\\AS\\Practice\\Core4\\PublicComment\\listSamples\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_8c935acd56e94900ecf56ac8d90b1c0195dc3f9d
-file.0=D\:\\Develop\\Workspace\\Android\\AS\\Practice\\Core4\\PublicComment\\listSamples\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_b77ed9a35485f33f1ccf15b8e2398292b491d3bb\\classes.dex

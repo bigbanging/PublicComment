@@ -1,14 +1,23 @@
 package com.litte.publiccomment.util;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.support.annotation.NonNull;
 import android.util.Log;
+import android.util.LruCache;
+import android.widget.ImageView;
 
+import com.android.volley.NetworkResponse;
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.litte.publiccomment.R;
 import com.litte.publiccomment.app.MyApp;
+import com.litte.publiccomment.bean.TuanBean;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -44,6 +53,7 @@ public class VolleyUtils {
         return INSTANCE;
     }
     RequestQueue queue = null;
+    ImageLoader imageLoader;
 
     private VolleyUtils(Context context) {
         queue = Volley.newRequestQueue(context);
@@ -51,6 +61,25 @@ public class VolleyUtils {
 
     private VolleyUtils() {
         queue = Volley.newRequestQueue(MyApp.CONTEXT);
+        ImageLoader.ImageCache imageCache = new ImageLoader.ImageCache() {
+
+            LruCache<String,Bitmap> cache = new LruCache<String, Bitmap>((int) (Runtime.getRuntime().maxMemory()/8)){
+                @Override
+                protected int sizeOf(String key, Bitmap value) {
+                    return value.getHeight()*value.getRowBytes();
+                }
+            };
+            @Override
+            public Bitmap getBitmap(String s) {
+                return cache.get(s);
+            }
+
+            @Override
+            public void putBitmap(String s, Bitmap bitmap) {
+                cache.put(s,bitmap);
+            }
+        };
+        imageLoader = new ImageLoader(queue,imageCache);
     }
 
     public void test() {
@@ -104,22 +133,27 @@ public class VolleyUtils {
                     JSONObject jsonObject = new JSONObject(s);
                     JSONArray jsonArray = jsonObject.getJSONArray("id_list");
                     int size = jsonArray.length();
-                    if (size>40){
+                    if (size > 40) {
                         size = 40;
                     }
                     StringBuilder sb = new StringBuilder();
-                    for (int i=0;i<40;i++){
+                    for (int i = 0; i < size; i++) {
                         String id = jsonArray.getString(i);
-                        sb.append(id+",");
+                        sb.append(id + ",");
                     }
-                    //包装获取到的ids的连接方式
-                    String idList = sb.substring(0,sb.length()-1);
-                    Map<String, String> params = new HashMap<>();
-                    params.put("deal_ids",idList);
-                    //2)根据多个团购ID批量获取指定团购单的详细信息
-                    String url2 = HttpUtils.getUrl("http://api.dianping.com/v1/deal/get_batch_deals_by_id",params);
-                    StringRequest stringRequest = new StringRequest(url2,listener,null);
-                    queue.add(stringRequest);
+                    if (sb.length() > 0){
+                        //包装获取到的ids的连接方式
+                        String idList = sb.substring(0, sb.length() - 1);
+                        Map<String, String> params = new HashMap<>();
+                        params.put("deal_ids", idList);
+                        //2)根据多个团购ID批量获取指定团购单的详细信息
+                        String url2 = HttpUtils.getUrl("http://api.dianping.com/v1/deal/get_batch_deals_by_id", params);
+                        StringRequest stringRequest = new StringRequest(url2, listener, null);
+                        queue.add(stringRequest);
+                }else {
+                        //该城市今日无新增团购
+                        listener.onResponse(null);
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -132,4 +166,33 @@ public class VolleyUtils {
         });
         queue.add(request);
     }
+
+    /**
+     * 显示网络中的图片
+     * @param url
+     * @param imageView
+     */
+    public void loadImage(String url, ImageView imageView){
+        ImageLoader.ImageListener listener = ImageLoader.getImageListener(imageView,
+                R.drawable.bucket_no_picture,R.drawable.picture_fail);
+        imageLoader.get(url, listener) ;
+    }
+    //Volley的自定义请求
+    public class tuanBeanRequest extends Request<TuanBean>{
+
+        public tuanBeanRequest(int method, String url, Response.ErrorListener listener) {
+            super(method, url, listener);
+        }
+
+        @Override
+        protected Response<TuanBean> parseNetworkResponse(NetworkResponse networkResponse) {
+            return null;
+        }
+
+        @Override
+        protected void deliverResponse(TuanBean tuanBean) {
+
+        }
+    }
+
 }
