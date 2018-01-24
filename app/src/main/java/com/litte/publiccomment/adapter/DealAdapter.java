@@ -44,11 +44,12 @@ public class DealAdapter extends MyBaseAdapter<TuanBean.Deal> {
         }
         TuanBean.Deal dealsBean = getItem(position);
         //TODO 呈现图片
-//        holder.img_deal_picture.setImageResource(R.drawable.bucket_no_picture);
-        HttpUtils.loadImage(dealsBean.getImage_url(),holder.img_deal_picture);
+//        HttpUtils.loadImage(dealsBean.getImage_url(),holder.img_deal_picture);
+        //Picasso框架呈现图片
+        HttpUtils.showImage(dealsBean.getImage_url(),holder.img_deal_picture);
         holder.tv_deal_title.setText(dealsBean.getTitle());
         holder.tv_deal_describe.setText(dealsBean.getDescription());
-        holder.tv_deal_price.setText(dealsBean.getCurrent_price()+"");
+        holder.tv_deal_price.setText(dealsBean.getCurrent_price()+"￥");
         //TODO 距离的计算 学过百度地图之后在做处理
         holder.tv_deal_distance.setText("XXXX");
         Random random = new Random();

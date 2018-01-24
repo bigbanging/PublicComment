@@ -42,4 +42,7 @@ dependencies {
     compile files('libs/picasso-2.5.2.jar')
     compile files('libs/retrofit-2.3.0.jar')
     compile files('libs/volley.jar')
+    compile files('libs/ormlite-android-5.0.jar')
+    compile files('libs/ormlite-core-5.0.jar')
+    compile files('libs/pinyin4j-2.5.1.jar')
 }

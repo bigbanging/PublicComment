@@ -9,8 +9,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.litte.publiccomment.R;
+import com.litte.publiccomment.app.MyApp;
+import com.litte.publiccomment.bean.TuanBean;
 import com.litte.publiccomment.content.IContant;
 import com.litte.publiccomment.content.IRetrofit;
+import com.squareup.picasso.Picasso;
 
 import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.codec.digest.DigestUtils;
@@ -156,6 +160,9 @@ http://api.dianping.com/v1/business/find_businesses
     public static void getDailyDealsByVolley(String city, Response.Listener<String> listener){
         VolleyUtils.getInstance().getDailyDeals(city,listener);
     }
+    public static void getDailyDealsByVolley2(String city, Response.Listener<TuanBean> listener){
+        VolleyUtils.getInstance().getDailyDeals2(city,listener);
+    }
     public static void loadImage(String url, ImageView imageView){
         VolleyUtils.getInstance().loadImage(url,imageView);
     }
@@ -185,5 +192,17 @@ http://api.dianping.com/v1/business/find_businesses
             }
         });*/
         RetrofitUtils.getInstance().test();
+    }
+    public static void getDealByRetrofit(String city,Callback<String> callback){
+        RetrofitUtils.getInstance().getDailDeals(city,callback);
+    }
+    public static void getDealByRetrofit2(String city,Callback<TuanBean> callback){
+        RetrofitUtils.getInstance().getDailyDeal(city,callback);
+    }
+    public static void getDealByRetrofit3(String city,Callback<TuanBean> callback){
+        RetrofitUtils.getInstance().getDailyDeal3(city,callback);
+    }
+    public static void showImage(String url,ImageView imageView){
+        Picasso.with(MyApp.CONTEXT).load(url).placeholder(R.drawable.bucket_no_picture).error(R.drawable.picture_fail).into(imageView);
     }
 }

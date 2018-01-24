@@ -35,6 +35,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import retrofit2.Call;
+import retrofit2.Callback;
 
 public class MainActivity extends Activity {
 
@@ -224,7 +226,8 @@ public class MainActivity extends Activity {
 //        HttpUtils.testHttpConnection();
         //Volley
 //        HttpUtils.testVolley();
-        HttpUtils.getDailyDealsByVolley(tv_city.getText().toString(), new Response.Listener<String>() {
+
+        /*HttpUtils.getDailyDealsByVolley(tv_city.getText().toString(), new Response.Listener<String>() {
             @Override
             public void onResponse(String s) {
                 Log.i("TAG", "onResponse: "+s);
@@ -239,8 +242,80 @@ public class MainActivity extends Activity {
                 }
                 pullToRefreshListView.onRefreshComplete();
             }
+        });*/
+        //测试自定义的Volley请求
+       /* HttpUtils.getDailyDealsByVolley2(tv_city.getText().toString(), new Response.Listener<TuanBean>() {
+            @Override
+            public void onResponse(TuanBean s) {
+                Log.i("TAG", "onResponse: "+s);
+                if (s!=null) {
+                    *//*Gson gson = new Gson();
+                    TuanBean tuanBean = gson.fromJson(s, TuanBean.class);*//*
+                    List<TuanBean.Deal> deals = s.getDeals();
+                    //将deals放到listView中呈现
+                    adapter.addAll(deals, true);
+                }else {
+                    Toast.makeText(MainActivity.this, "今日无新增团购内容", Toast.LENGTH_SHORT).show();
+                }
+                pullToRefreshListView.onRefreshComplete();
+            }
+        });*/
+        //Retrofit请求的写法
+        /*HttpUtils.getDealByRetrofit(tv_city.getText().toString(), new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, retrofit2.Response<String> response) {
+                if (response != null){
+                    Gson gson = new Gson();
+                    TuanBean tuanBean = gson.fromJson(response.body(),TuanBean.class);
+                    List<TuanBean.Deal> deals = tuanBean.getDeals();
+                    adapter.addAll(deals,true);
+                }else {
+                    Toast.makeText(MainActivity.this, "今日无新增团购信息", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable throwable) {
+                Log.i("TAG", "onFailure: "+throwable.getMessage());
+                pullToRefreshListView.onRefreshComplete();
+            }
+        });*/
+        //Retrofit直接请求实体类
+        /*HttpUtils.getDealByRetrofit2(tv_city.getText().toString(), new Callback<TuanBean>() {
+            @Override
+            public void onResponse(Call<TuanBean> call, retrofit2.Response<TuanBean> response) {
+                if (response != null) {
+                    TuanBean body = response.body();
+                    List<TuanBean.Deal> deals = body.getDeals();
+                    adapter.addAll(deals,true);
+                } else {
+                    Toast.makeText(MainActivity.this, "今日无新增团购信息", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<TuanBean> call, Throwable throwable) {
+
+            }
+        });*/
+        //Retrofit+OKHttp请求时的写法
+        HttpUtils.getDealByRetrofit3(tv_city.getText().toString(), new Callback<TuanBean>() {
+            @Override
+            public void onResponse(Call<TuanBean> call, retrofit2.Response<TuanBean> response) {
+                if (response != null){
+                    TuanBean body = response.body();
+                    List<TuanBean.Deal> deals = body.getDeals();
+                    adapter.addAll(deals,true);
+                }else {
+                    Toast.makeText(MainActivity.this, "今日无新增团购信息", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<TuanBean> call, Throwable throwable) {
+
+            }
         });
-        //Retrofit+OKHttp
 //        HttpUtils.testRetrofit();
         //2)根据服务器响应的内容进行解析
         // JSON字符串 / XML文档
