@@ -1,5 +1,6 @@
 package com.litte.publiccomment.content;
 
+import com.litte.publiccomment.bean.CityBean;
 import com.litte.publiccomment.bean.TuanBean;
 
 import java.util.Map;
@@ -28,4 +29,6 @@ public interface IRetrofit {
     Call<String> deal_id3(@QueryMap Map<String,String>paramMap);
     @GET("deal/get_batch_deals_by_id")
     Call<TuanBean> deal3(@QueryMap Map<String,String> paramMap);
+    @GET("metadata/get_cities_with_businesses")
+    Call<CityBean> deal_city(@QueryMap Map<String,String> paramMap);
 }

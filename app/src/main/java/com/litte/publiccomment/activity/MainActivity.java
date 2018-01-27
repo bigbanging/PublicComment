@@ -218,6 +218,26 @@ public class MainActivity extends Activity {
 
     private void refresh() {
 
+        /*new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                HttpUtils.getDealByRetrofit3(tv_city.getText().toString(), new Callback<TuanBean>() {
+                    @Override
+                    public void onResponse(Call<TuanBean> call, retrofit2.Response<TuanBean> response) {
+                        if (response != null){
+                            TuanBean body = response.body();
+                            List<TuanBean.Deal> deals = body.getDeals();
+                            adapter.addAll(deals,true);
+                        }else {
+                            Toast.makeText(MainActivity.this, "今日无新增团购信息", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                    @Override
+                    public void onFailure(Call<TuanBean> call, Throwable throwable) {
+                    }
+                });
+            }
+        }, 2000);*/
         //1)发起一个请求，服务器响应
         //以GET的方式发起请求
         //请求格式：http://xxx.xxxx.com/xxx？key=14xxxxxxx&city=%e8%f8%c6%xx%xx%xx
@@ -227,7 +247,7 @@ public class MainActivity extends Activity {
         //Volley
 //        HttpUtils.testVolley();
 
-        /*HttpUtils.getDailyDealsByVolley(tv_city.getText().toString(), new Response.Listener<String>() {
+        HttpUtils.getDailyDealsByVolley(tv_city.getText().toString(), new Response.Listener<String>() {
             @Override
             public void onResponse(String s) {
                 Log.i("TAG", "onResponse: "+s);
@@ -242,7 +262,7 @@ public class MainActivity extends Activity {
                 }
                 pullToRefreshListView.onRefreshComplete();
             }
-        });*/
+        });
         //测试自定义的Volley请求
        /* HttpUtils.getDailyDealsByVolley2(tv_city.getText().toString(), new Response.Listener<TuanBean>() {
             @Override
@@ -299,7 +319,7 @@ public class MainActivity extends Activity {
             }
         });*/
         //Retrofit+OKHttp请求时的写法
-        HttpUtils.getDealByRetrofit3(tv_city.getText().toString(), new Callback<TuanBean>() {
+       /* HttpUtils.getDealByRetrofit3(tv_city.getText().toString(), new Callback<TuanBean>() {
             @Override
             public void onResponse(Call<TuanBean> call, retrofit2.Response<TuanBean> response) {
                 if (response != null){
@@ -315,7 +335,7 @@ public class MainActivity extends Activity {
             public void onFailure(Call<TuanBean> call, Throwable throwable) {
 
             }
-        });
+        });*/
 //        HttpUtils.testRetrofit();
         //2)根据服务器响应的内容进行解析
         // JSON字符串 / XML文档

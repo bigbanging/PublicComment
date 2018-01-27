@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.litte.publiccomment.activity.ChooseCityActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <include
+        layout="@layout/header_city_title_layout"/>
+   <include
+       layout="@layout/city_search_layout"/>
+   <android.support.v7.widget.RecyclerView
+       android:id="@+id/recyclerView_show_city"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       >
+
+   </android.support.v7.widget.RecyclerView>
+</LinearLayout>

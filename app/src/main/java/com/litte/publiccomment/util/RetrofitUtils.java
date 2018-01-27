@@ -2,6 +2,7 @@ package com.litte.publiccomment.util;
 
 import android.util.Log;
 
+import com.litte.publiccomment.bean.CityBean;
 import com.litte.publiccomment.bean.TuanBean;
 import com.litte.publiccomment.content.IContant;
 import com.litte.publiccomment.content.IRetrofit;
@@ -200,7 +201,12 @@ public class RetrofitUtils {
 
             Log.i("TAG", "intercept:OKHTTP原始请求路径 "+urlString);
             StringBuilder sb = new StringBuilder(urlString);
-            sb.append("&").append("appkey=").append(IContant.APPKEY);
+            if (set.size() == 0){
+                sb.append("?");
+            }else {
+                sb.append("&");
+            }
+            sb.append("appkey=").append(IContant.APPKEY);
             sb.append("&").append("sign=").append(sign);
             //http://baseurl/deal/get_daily_new_id_list?city=xxx&date=xxx&appkey=xxx&sign=xxx
             Request newRequest = new Request.Builder().url(sb.toString()).build();
@@ -250,5 +256,10 @@ public class RetrofitUtils {
 
             }
         });
+    }
+    public void getCities(Callback<CityBean> callBack){
+        Map<String, String> paramMap = new HashMap<>();
+        Call<CityBean> cityBeanCall = iRetrofit.deal_city(paramMap);
+        cityBeanCall.enqueue(callBack);
     }
 }

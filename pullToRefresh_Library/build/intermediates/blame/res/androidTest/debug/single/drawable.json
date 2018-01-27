@@ -1,5 +1,9 @@
 [
     {
+        "merged": "D:\\Develop\\Workspace\\Android\\AS\\Practice\\Core4\\PublicComment\\pullToRefresh_Library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\refresh_anim.xml",
+        "source": "D:\\Develop\\Workspace\\Android\\AS\\Practice\\Core4\\PublicComment\\pullToRefresh_Library\\build\\intermediates\\bundles\\debug\\res\\drawable\\refresh_anim.xml"
+    },
+    {
         "merged": "D:\\Develop\\Workspace\\Android\\AS\\Practice\\Core4\\PublicComment\\pullToRefresh_Library\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable\\indicator_bg_bottom.xml",
         "source": "D:\\Develop\\Workspace\\Android\\AS\\Practice\\Core4\\PublicComment\\pullToRefresh_Library\\build\\intermediates\\bundles\\debug\\res\\drawable\\indicator_bg_bottom.xml"
     },

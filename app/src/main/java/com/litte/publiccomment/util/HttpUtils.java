@@ -11,6 +11,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.litte.publiccomment.R;
 import com.litte.publiccomment.app.MyApp;
+import com.litte.publiccomment.bean.CityBean;
 import com.litte.publiccomment.bean.TuanBean;
 import com.litte.publiccomment.content.IContant;
 import com.litte.publiccomment.content.IRetrofit;
@@ -160,8 +161,14 @@ http://api.dianping.com/v1/business/find_businesses
     public static void getDailyDealsByVolley(String city, Response.Listener<String> listener){
         VolleyUtils.getInstance().getDailyDeals(city,listener);
     }
+    public static void getCitiesByVolley(Response.Listener<String> listener){
+        VolleyUtils.getInstance().getCities(listener);
+    }
     public static void getDailyDealsByVolley2(String city, Response.Listener<TuanBean> listener){
         VolleyUtils.getInstance().getDailyDeals2(city,listener);
+    }
+    public static void getCitiesByRetrofit(Callback<CityBean> callBack){
+        RetrofitUtils.getInstance().getCities(callBack);
     }
     public static void loadImage(String url, ImageView imageView){
         VolleyUtils.getInstance().loadImage(url,imageView);

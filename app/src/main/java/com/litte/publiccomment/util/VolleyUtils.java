@@ -258,4 +258,16 @@ public class VolleyUtils {
         });
         queue.add(request);
     }
+    public void getCities(Response.Listener<String> listener){
+        Map<String, String> paramMap = new HashMap<>();
+        String u = "http://api.dianping.com/v1/metadata/get_cities_with_businesses";
+        String url = HttpUtils.getUrl(u,paramMap);
+        StringRequest request = new StringRequest(url, listener, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Log.i("TAG", "onErrorResponse: "+volleyError.getMessage());
+            }
+        });
+        queue.add(request);
+    }
 }
