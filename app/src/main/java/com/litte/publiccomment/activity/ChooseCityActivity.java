@@ -7,6 +7,7 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -20,6 +21,7 @@ import com.litte.publiccomment.bean.CityPinYinBean;
 import com.litte.publiccomment.util.DBUtils;
 import com.litte.publiccomment.util.HttpUtils;
 import com.litte.publiccomment.util.PinYinSortUtils;
+import com.litte.publiccomment.view.MyLetterView;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -48,6 +50,8 @@ public class ChooseCityActivity extends Activity {
     List<CityPinYinBean> datas = null;
     DBUtils dbUtils;
 
+    @BindView(R.id.myLetterView)
+    MyLetterView myLetterView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +59,20 @@ public class ChooseCityActivity extends Activity {
         dbUtils = new DBUtils(this);
         ButterKnife.bind(this);
         initialRecyclerView();
+        myLetterView.setOnTouchLetterListener(new MyLetterView.onTouchLetterListener(){
+
+            @Override
+            public void onTouchLetter(MyLetterView view, String letter) {
+                Toast.makeText(ChooseCityActivity.this, letter, Toast.LENGTH_SHORT).show();
+                LinearLayoutManager manager = (LinearLayoutManager) recyclerView_show_city.getLayoutManager();
+                if ("热门".equals(letter)){
+                    manager.scrollToPosition(0);
+                }else {
+                    int position = adapter.getPositionForSection(letter.charAt(0));
+                    manager.scrollToPositionWithOffset(position+1,0);
+                }
+            }
+        });
     }
 
     private void initialRecyclerView() {
@@ -69,11 +87,29 @@ public class ChooseCityActivity extends Activity {
             public void OnItemClick(View itemView, int position) {
                 CityPinYinBean cityPinYinBean = datas.get(position);
                 Toast.makeText(ChooseCityActivity.this,cityPinYinBean.getCityName(), Toast.LENGTH_SHORT).show();
+                String cityName = cityPinYinBean.getCityName();
+                /*Intent intent = new Intent(ChooseCityActivity.this,MainActivity.class);
+                intent.putExtra("city",cityName);
+                startActivity(intent);*/
+                Intent data = new Intent();
+                data.putExtra("city",cityName);
+                setResult(RESULT_OK,data);
+                finish();
             }
         });
         recyclerView_show_city.setAdapter(adapter);
+        //添加头
+        View headerView = LayoutInflater.from(this).inflate(R.layout.usual_search_city,recyclerView_show_city,false);
+
+        adapter.addHeaderView(headerView);
     }
 
+    @OnClick(R.id.tv_search_city)
+    public void JumpTo(View view){
+        Intent intent = new Intent(this,SearchCityActivity.class);
+        startActivityForResult(intent,101);
+
+    }
     @Override
     protected void onResume() {
         super.onResume();
@@ -157,5 +193,17 @@ public class ChooseCityActivity extends Activity {
     public void backSearchCity(View view){
         startActivity(new Intent(this,MainActivity.class));
         finish();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK && requestCode == 101){
+            /*Intent data2 = new Intent();
+            String city = data2.getStringExtra("city");
+            data2.putExtra("city",city);*/
+            setResult(RESULT_OK,data);
+            finish();
+        }
     }
 }

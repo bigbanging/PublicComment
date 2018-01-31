@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="60dp">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager_ads_banner"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v4.view.ViewPager>
+    <!--<ImageView
+        android:id="@+id/img_business_ads"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:src="@drawable/ad_1"
+        android:scaleType="fitXY"/>-->
+    <ImageView
+        android:id="@+id/img_business_ads_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ump_icon_delete"
+        android:layout_gravity="right|center_vertical"
+        android:paddingRight="20dp"/>
+    <LinearLayout
+        android:id="@+id/ll_director_ads_banner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|bottom"
+        android:padding="10dp"
+        android:orientation="horizontal">
+        <!--<ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/banner_dot_pressed"/>-->
+    </LinearLayout>
+</FrameLayout>

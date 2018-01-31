@@ -3,6 +3,7 @@ package com.litte.publiccomment.util;
 import android.util.Log;
 
 import com.litte.publiccomment.bean.CityBean;
+import com.litte.publiccomment.bean.RegionBean;
 import com.litte.publiccomment.bean.TuanBean;
 import com.litte.publiccomment.content.IContant;
 import com.litte.publiccomment.content.IRetrofit;
@@ -261,5 +262,11 @@ public class RetrofitUtils {
         Map<String, String> paramMap = new HashMap<>();
         Call<CityBean> cityBeanCall = iRetrofit.deal_city(paramMap);
         cityBeanCall.enqueue(callBack);
+    }
+    public void getRegion(String city, Callback<RegionBean> callBack){
+        Map<String, String> paramMap = new HashMap<>();
+        paramMap.put("city",city);
+        Call<RegionBean> regionBeanCall = iRetrofit.region_call(paramMap);
+        regionBeanCall.enqueue(callBack);
     }
 }

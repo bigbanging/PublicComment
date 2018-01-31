@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:background="#FFF0F0F0">
+
+    <ImageView
+        android:id="@+id/img_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/yy_calendar_icon_previous"
+        android:layout_gravity="center"
+        android:paddingLeft="15dp"/>
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="40dp"
+        android:background="@drawable/shape_action_bar_search"
+        android:layout_gravity="center_vertical"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/navibar_search_icon_search"
+            android:paddingLeft="15dp"
+            android:paddingRight="10dp"
+            android:layout_gravity="center_vertical"/>
+        <EditText
+            android:id="@+id/et_search_city"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:hint="城市名、拼音首字母"
+            android:layout_gravity="center_vertical"
+            android:textSize="18sp"/>
+    </LinearLayout>
+</LinearLayout>

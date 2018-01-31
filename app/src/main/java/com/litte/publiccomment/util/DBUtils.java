@@ -18,7 +18,7 @@ public class DBUtils {
     DBHelper dbHelper;
     Dao<CityPinYinBean, ?> dao;
     public DBUtils(Context context){
-        dbHelper = new DBHelper(context);
+        dbHelper = DBHelper.getINSTANCE(context);
         try {
             dao = dbHelper.getDao(CityPinYinBean.class);
         } catch (SQLException e) {

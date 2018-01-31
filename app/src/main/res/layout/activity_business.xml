@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.litte.publiccomment.activity.BusinessActivity">
+
+    <include layout="@layout/business_action_bar"/>
+    <include layout="@layout/business_part_two"/>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <ListView
+            android:paddingTop="20dp"
+            android:id="@+id/listView_business"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        <ImageView
+            android:id="@+id/img_business_refresh_loading"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:src="@drawable/refresh_anim"/>
+        <include
+            android:id="@+id/region_menu_layout"
+            layout="@layout/region_layout"
+            android:visibility="invisible"/>
+    </FrameLayout>
+
+
+    <include
+        layout="@layout/business_bottom_show_position"/>
+</LinearLayout>

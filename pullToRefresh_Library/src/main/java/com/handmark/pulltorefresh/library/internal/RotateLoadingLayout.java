@@ -105,9 +105,9 @@ public class RotateLoadingLayout extends LoadingLayout {
 			Bitmap scaledBitmap = Bitmap.createScaledBitmap(src, width, height, true);
 			mHeaderImage.setImageBitmap(scaledBitmap);
 //			另一种思路，利用原始图片创建一个ScaleDrawable
-			Drawable drawable = getResources().getDrawable(idx);
+			/*Drawable drawable = getResources().getDrawable(idx);
 			drawable.setLevel(100);
-			ScaleDrawable scaleDrawable = new ScaleDrawable(drawable, Gravity.CENTER,0.5f,0.5f);
+			ScaleDrawable scaleDrawable = new ScaleDrawable(drawable, Gravity.CENTER,0.5f,0.5f);*/
 			mHeaderImage.setImageBitmap(scaledBitmap);
 		}else {
 			int resId = animId[10];

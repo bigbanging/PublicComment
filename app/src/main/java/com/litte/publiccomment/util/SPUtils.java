@@ -35,4 +35,12 @@ public class SPUtils {
         editor.putBoolean("FIRST",flag);
         editor.commit();
     }
+    public boolean isClose(){
+        return sharedPreferences.getBoolean("CLOSE",false);
+    }
+    public void setCllose(boolean flag){
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("CLOSE",flag);
+        editor.commit();
+    }
 }

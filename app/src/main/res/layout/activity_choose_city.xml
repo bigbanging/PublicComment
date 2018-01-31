@@ -11,11 +11,18 @@
         layout="@layout/header_city_title_layout"/>
    <include
        layout="@layout/city_search_layout"/>
-   <android.support.v7.widget.RecyclerView
-       android:id="@+id/recyclerView_show_city"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       >
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView_show_city"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <com.litte.publiccomment.view.MyLetterView
+            android:id="@+id/myLetterView"
+            android:layout_width="30dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="right"/>
+    </FrameLayout>
 
-   </android.support.v7.widget.RecyclerView>
 </LinearLayout>

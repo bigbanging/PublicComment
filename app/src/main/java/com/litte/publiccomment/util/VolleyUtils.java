@@ -3,6 +3,7 @@ package com.litte.publiccomment.util;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 import android.util.Log;
 import android.util.LruCache;
 import android.widget.ImageView;
@@ -266,6 +267,22 @@ public class VolleyUtils {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 Log.i("TAG", "onErrorResponse: "+volleyError.getMessage());
+            }
+        });
+        queue.add(request);
+    }
+    public void getFoods(String city,String region,Response.Listener<String> listener){
+        Map<String, String> paramMap = new HashMap<>();
+        paramMap.put("city",city);
+        paramMap.put("category","美食");
+        if (!TextUtils.isEmpty(region)){
+            paramMap.put("region",region);
+        }
+        String url = HttpUtils.getUrl("http://api.dianping.com/v1/business/find_businesses",paramMap);
+        StringRequest request = new StringRequest(url, listener, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError volleyError) {
+                Log.i("TAG", "onErrorResponse: 错误提示："+volleyError.getMessage());
             }
         });
         queue.add(request);

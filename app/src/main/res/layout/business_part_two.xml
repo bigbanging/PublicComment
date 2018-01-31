@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="35dp"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/tv_one"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="附近"
+        android:textSize="18sp"
+        android:drawableRight="@drawable/ic_arrow_down_black"
+        android:gravity="center"
+        android:paddingRight="10dp"/>
+    <TextView
+        android:id="@+id/tv_two"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="美食"
+        android:textSize="18sp"
+        android:drawableRight="@drawable/ic_arrow_down_black"
+        android:gravity="center"
+        android:paddingRight="10dp"/>
+    <TextView
+        android:id="@+id/tv_three"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="智能排序"
+        android:textSize="16sp"
+        android:drawableRight="@drawable/ic_arrow_down_black"
+        android:gravity="center"
+        android:paddingRight="10dp"/>
+    <TextView
+        android:id="@+id/tv_four"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:text="筛选"
+        android:textSize="18sp"
+        android:drawableRight="@drawable/ic_arrow_down_black"
+        android:gravity="center"
+        android:paddingRight="10dp"/>
+</LinearLayout>

@@ -12,6 +12,7 @@ import com.android.volley.toolbox.Volley;
 import com.litte.publiccomment.R;
 import com.litte.publiccomment.app.MyApp;
 import com.litte.publiccomment.bean.CityBean;
+import com.litte.publiccomment.bean.RegionBean;
 import com.litte.publiccomment.bean.TuanBean;
 import com.litte.publiccomment.content.IContant;
 import com.litte.publiccomment.content.IRetrofit;
@@ -167,6 +168,9 @@ http://api.dianping.com/v1/business/find_businesses
     public static void getDailyDealsByVolley2(String city, Response.Listener<TuanBean> listener){
         VolleyUtils.getInstance().getDailyDeals2(city,listener);
     }
+    public static void getFoodByVolley(String city, String region, Response.Listener<String> listener){
+        VolleyUtils.getInstance().getFoods(city,region,listener);
+    }
     public static void getCitiesByRetrofit(Callback<CityBean> callBack){
         RetrofitUtils.getInstance().getCities(callBack);
     }
@@ -211,5 +215,8 @@ http://api.dianping.com/v1/business/find_businesses
     }
     public static void showImage(String url,ImageView imageView){
         Picasso.with(MyApp.CONTEXT).load(url).placeholder(R.drawable.bucket_no_picture).error(R.drawable.picture_fail).into(imageView);
+    }
+    public static void getRegionBeanByRetrofit(String city, Callback<RegionBean> callBack){
+        RetrofitUtils.getInstance().getRegion(city,callBack);
     }
 }

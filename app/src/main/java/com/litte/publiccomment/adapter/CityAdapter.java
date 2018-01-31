@@ -1,6 +1,7 @@
 package com.litte.publiccomment.adapter;
 
 import android.content.Context;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -28,7 +29,12 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.ViewHolder> im
     List<CityPinYinBean> datas;
     //布局解析器
     LayoutInflater inflater;
+    //RecyclerView条目监听
     OnItemClickListener onItemClickListener;
+    //为RecyclerView添加的常用城市布局
+    View view_city_header;
+    private static final int HEADER = 0;
+    private static final int ITEM = 1;
 
     public CityAdapter(Context context, List<CityPinYinBean> datas) {
         this.context = context;
@@ -40,7 +46,26 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.ViewHolder> im
     }
 
     @Override
+    public int getItemViewType(int position) {
+        if (this.view_city_header!=null){
+            if (position == 0){
+                return HEADER;
+            }else {
+                return ITEM;
+            }
+        }else {
+            return ITEM;
+        }
+    }
+
+    @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        if (viewType == HEADER){
+//            View view = inflater.inflate(R.layout.usual_search_city,parent,false);
+            ViewHolder viewHolder = new ViewHolder(view_city_header);
+            return viewHolder;
+        }
+        //创建ViewHolder
         final View view = inflater.inflate(R.layout.item_city_list, parent, false);
         ViewHolder holder = new ViewHolder(view);
         return holder;
@@ -48,12 +73,16 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.ViewHolder> im
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-        CityPinYinBean cityName = datas.get(position);
+        if (view_city_header!=null&&position==0){
+            return;
+        }
+        final int dataIndex = getDataIndex(position);
+        CityPinYinBean cityName = datas.get(dataIndex);
         holder.tv_city_name_listItem.setText(cityName.getCityName());
         holder.tv_city_group_letter.setText(cityName.getLetter()+"");
         //字母分组
         //position这个位置的数据是不是该数据所属分组的起始位置
-        if (position == getPositionForSection(getSectionForPosition(position))){
+        if (dataIndex == getPositionForSection(getSectionForPosition(dataIndex))){
             holder.tv_city_group_letter.setVisibility(View.VISIBLE);
         }else {
             holder.tv_city_group_letter.setVisibility(View.GONE);
@@ -63,10 +92,15 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.ViewHolder> im
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    onItemClickListener.OnItemClick(itemView,position);
+                    onItemClickListener.OnItemClick(itemView,dataIndex);
                 }
             });
         }
+    }
+
+    private int getDataIndex(int position) {
+
+        return view_city_header ==null?position:position-1;
     }
 
     @Override
@@ -114,8 +148,10 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.ViewHolder> im
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
+        @Nullable
         @BindView(R.id.tv_city_group_letter)
         TextView tv_city_group_letter;
+        @Nullable
         @BindView(R.id.tv_city_name_listItem)
         TextView tv_city_name_listItem;
 
@@ -126,5 +162,14 @@ public class CityAdapter extends RecyclerView.Adapter<CityAdapter.ViewHolder> im
     }
     public interface OnItemClickListener{
         void OnItemClick(View itemView,int position);
+    }
+    //添加布局的方法
+    public void addHeaderView(View view){
+        if (view_city_header == null) {
+            this.view_city_header = view;
+            notifyItemChanged(0);
+        }else {
+            throw new RuntimeException("不允许添加多个头部");
+        }
     }
 }

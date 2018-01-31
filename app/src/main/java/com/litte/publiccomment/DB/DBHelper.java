@@ -15,6 +15,18 @@ import java.sql.SQLException;
  */
 
 public class DBHelper extends OrmLiteSqliteOpenHelper {
+    //单例
+    private static DBHelper INSTANCE;
+    public static DBHelper getINSTANCE(Context context){
+        if (INSTANCE == null){
+            synchronized (DBHelper.class){
+                if (INSTANCE == null){
+                    INSTANCE = new DBHelper(context);
+                }
+            }
+        }
+        return INSTANCE;
+    }
     public DBHelper(Context context) {
         super(context, "cityname.db", null, 1);
     }

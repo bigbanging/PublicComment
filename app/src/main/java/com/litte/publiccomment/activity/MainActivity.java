@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -71,7 +72,8 @@ public class MainActivity extends Activity {
 
     @OnClick(R.id.tv_city)
     public void chooseCity(View view){
-        startActivity(new Intent(this,ChooseCityActivity.class));
+        Intent intent = new Intent(this,ChooseCityActivity.class);
+        startActivityForResult(intent,101);
     }
     @OnClick(R.id.imgView_header_right_actionBar)
     public void showMenu(View view){
@@ -162,6 +164,17 @@ public class MainActivity extends Activity {
             public Object instantiateItem(ViewGroup container, int position) {
                 int layoutId = header_list_icon[position%3];
                 View view = LayoutInflater.from(MainActivity.this).inflate(layoutId,viewPager_header_icon_list,false);
+                if (position%3==0){
+                    View foodView = view.findViewById(R.id.ll_header_list_icon_food);
+                    foodView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(MainActivity.this,BusinessActivity.class);
+                            intent.putExtra("city",tv_city.getText().toString());
+                            startActivity(intent);
+                        }
+                    });
+                }
                 container.addView(view);
                 return view;
             }
@@ -213,6 +226,11 @@ public class MainActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
+        /*String city = getIntent().getStringExtra("city");
+        if (TextUtils.isEmpty(city)){
+            tv_city.setText("北京");
+        }
+            tv_city.setText(city);*/
         refresh();
     }
 
@@ -350,5 +368,23 @@ public class MainActivity extends Activity {
 
         //3)将解析结果放到View中显示
         //放到ListView中显示需要适配器、条目布局
+    }
+
+    @OnClick(R.id.ll_header_center_actionBar)
+    public void jumpTo(View view){
+        startActivity(new Intent(this,SearchCityActivity.class));
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK&&requestCode==101){
+            String city = data.getStringExtra("city");
+            tv_city.setText(city);
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }
