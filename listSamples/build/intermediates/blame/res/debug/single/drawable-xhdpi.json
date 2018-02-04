@@ -32,12 +32,12 @@
         "source": "D:\\Develop\\Workspace\\Android\\AS\\Practice\\Core4\\PublicComment\\listSamples\\src\\main\\res\\drawable-xhdpi\\perm_group_location_normal.png"
     },
     {
-        "merged": "D:\\Develop\\Workspace\\Android\\AS\\Practice\\Core4\\PublicComment\\listSamples\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\icon.png",
-        "source": "D:\\Develop\\Workspace\\Android\\AS\\Practice\\Core4\\PublicComment\\listSamples\\src\\main\\res\\drawable-xhdpi\\icon.png"
-    },
-    {
         "merged": "D:\\Develop\\Workspace\\Android\\AS\\Practice\\Core4\\PublicComment\\listSamples\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\custom_tab_indicator_selected_focused.9.png",
         "source": "D:\\Develop\\Workspace\\Android\\AS\\Practice\\Core4\\PublicComment\\listSamples\\src\\main\\res\\drawable-xhdpi\\custom_tab_indicator_selected_focused.9.png"
+    },
+    {
+        "merged": "D:\\Develop\\Workspace\\Android\\AS\\Practice\\Core4\\PublicComment\\listSamples\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\icon.png",
+        "source": "D:\\Develop\\Workspace\\Android\\AS\\Practice\\Core4\\PublicComment\\listSamples\\src\\main\\res\\drawable-xhdpi\\icon.png"
     },
     {
         "merged": "D:\\Develop\\Workspace\\Android\\AS\\Practice\\Core4\\PublicComment\\listSamples\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\perm_group_camera_selected.png",

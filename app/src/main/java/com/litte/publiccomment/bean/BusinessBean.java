@@ -1,12 +1,13 @@
 package com.litte.publiccomment.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by litte on 2018/1/30.
  */
 
-public class BusinessBean {
+public class BusinessBean implements Serializable{
 
     /**
      * status : OK
@@ -52,7 +53,7 @@ public class BusinessBean {
         this.businesses = businesses;
     }
 
-    public static class BusinessesBean {
+    public static class BusinessesBean implements Serializable{
         /**
          * business_id : 6073901
          * name : 拉亚汉堡经典餐厅
@@ -427,7 +428,7 @@ public class BusinessBean {
             this.deals = deals;
         }
 
-        public static class DealsBean {
+        public static class DealsBean implements Serializable{
             /**
              * id : 1-6013503
              * description : 拉亚汉堡经典餐厅/费尼汉堡/堤诺比萨!仅售127元，价值150元代金券，提供免费wifi，可累积使用！无需预约，多地区多店通用!

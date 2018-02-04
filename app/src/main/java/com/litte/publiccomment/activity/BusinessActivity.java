@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
@@ -25,6 +26,7 @@ import com.litte.publiccomment.util.HttpUtils;
 import com.litte.publiccomment.util.SPUtils;
 import com.litte.publiccomment.view.MyAdsBannerView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -135,6 +137,20 @@ public class BusinessActivity extends Activity {
         AnimationDrawable drawable = (AnimationDrawable) img_business_refresh_loading.getDrawable();
         drawable.start();
         listView_business.setEmptyView(img_business_refresh_loading);
+        listView_business.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                BusinessBean.BusinessesBean business;
+                if (spUtils.isClose()){
+                    business = adapter.getItem(position);
+                }else {
+                    business = adapter.getItem(position-1);
+                }
+                Intent intent = new Intent(BusinessActivity.this,DetailActivity.class);
+                intent.putExtra("business",business);
+                startActivity(intent);
+            }
+        });
     }
 
     @OnClick(R.id.img_business_title_back)
@@ -190,7 +206,7 @@ public class BusinessActivity extends Activity {
         });
     }
     @OnClick(R.id.tv_one)
-    public void showRegionbusiness(View view){
+    public void showRegionBusiness(View view){
         if (menuNeighborLayout.getVisibility() == View.VISIBLE){
             menuNeighborLayout.setVisibility(View.INVISIBLE);
         }else {

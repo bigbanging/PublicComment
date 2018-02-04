@@ -1,6 +1,8 @@
 package com.litte.publiccomment.util;
 
 import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.widget.ImageView;
 
@@ -20,8 +22,11 @@ import com.squareup.picasso.Picasso;
 
 import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.codec.digest.DigestUtils;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
@@ -218,5 +223,29 @@ http://api.dianping.com/v1/business/find_businesses
     }
     public static void getRegionBeanByRetrofit(String city, Callback<RegionBean> callBack){
         RetrofitUtils.getInstance().getRegion(city,callBack);
+    }
+    public  static void getComment(final String url, final OnResponseListener<Document> listener){
+
+        new Thread(){
+            @Override
+            public void run() {
+                super.run();
+                //这是网络访问 要异步线程
+                try {
+                    final Document document = Jsoup.connect(url).get();
+                    new Handler(Looper.getMainLooper()).post(new Runnable() {
+                        @Override
+                        public void run() {
+                            listener.onResponse(document);
+                        }
+                    });
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }.start();
+    }
+    public interface OnResponseListener<T>{
+        void onResponse(T t);
     }
 }

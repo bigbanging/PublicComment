@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    android:layout_margin="8dp">
+
+    <ImageView
+        android:id="@+id/img_business_detail_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/yy_calendar_icon_previous"
+        android:paddingLeft="15dp"/>
+    <ImageView
+        android:id="@+id/img_business_detail_favorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_action_favorite_off_normal"
+        android:layout_marginEnd="16dp"
+        android:layout_alignTop="@+id/img_business_detail_more"
+        android:layout_toStartOf="@+id/img_business_detail_more" />
+    <ImageView
+        android:id="@+id/img_business_detail_more"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/title_icon_more_u"
+        android:paddingRight="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true" />
+    <ImageView
+        android:id="@+id/img_business_detail_share"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_action_share_normal"
+        android:layout_alignTop="@+id/img_business_detail_favorite"
+        android:layout_toStartOf="@+id/img_business_detail_favorite"
+        android:layout_marginEnd="14dp" />
+</RelativeLayout>
